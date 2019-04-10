@@ -109,6 +109,18 @@
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-laptop"></i>
+                <span>Comunas</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="{{route('comunas.create')}}"><i class="fa fa-circle-o"></i> Crear</a></li>
+                <li><a href="{{route('comunas.index')}}"><i class="fa fa-circle-o"></i> Ver</a></li>
+              </ul>
+            </li>
+            
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-laptop"></i>
                 <span>Planillas</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
@@ -128,20 +140,7 @@
                 <li><a href="{{route('planillas.create')}}"><i class="fa fa-circle-o"></i> Crear</a></li>
                 <li><a href="{{route('planillas.index')}}"><i class="fa fa-circle-o"></i> Ver</a></li>
               </ul>
-            </li>
-
-            <li>
-              <a href="#">
-                <i class="fa fa-plus-square"></i> <span>Ayuda</span>
-                <small class="label pull-right bg-red">PDF</small>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <i class="fa fa-info-circle"></i> <span>Acerca De...</span>
-                <small class="label pull-right bg-yellow">IT</small>
-              </a>
-            </li>       
+            </li>      
           </ul>
         </section>
         <!-- /.sidebar -->
@@ -167,6 +166,7 @@
         <strong>Copyright &copy; 2016-2017 <a href="http://www.project4design.com">Project 4 Design C.A</a>.</strong> All rights reserved.
       </footer>
     </div><!-- .wrapper -->
+    
     <!-- jQuery 2.1.4 -->
     <script type="text/javascript" src="{{asset('js/jQuery-2.1.4.min.js')}}"></script>
     <!-- Bootstrap 3.3.5 -->
@@ -176,6 +176,9 @@
     <!-- Data table -->
     <script type="text/javascript" src="{{asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('plugins/datatables/dataTables.bootstrap.js')}}"></script>
+    
+    <script src="{{ asset('js/vue.min.js') }}"></script>
+    <script src="{{ asset('js/axios.min.js') }}"></script>
     <script type="text/javascript">
       $(document).ready(function(){
       	//Eliminar alertas que no contengan la clase alert-important luego de 7seg
