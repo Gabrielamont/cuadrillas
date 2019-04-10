@@ -12,7 +12,7 @@
 		<!-- Formulario -->
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3">
-				
+
 			</div>
 		</div>
 
@@ -27,7 +27,7 @@
 					<form   method="POST" enctype="multipart/form-data" id="form_pad">
 					{{ method_field( 'POST' ) }}
 					{{ csrf_field() }}
-					<input type="hidden" name="id_user" value="{{Auth::user()->id}}">				
+					<input type="hidden" name="id_user" value="{{Auth::user()->id}}">
 
 						<h2 class="text-center">Cuadrillas</h2>
 					<hr>
@@ -52,7 +52,7 @@
 										<input id="razon_social" class="form-control" type="text" name="email[]"   placeholder="Email" required >
 								</div>
 							</div>
-							
+
 							<div class="col-md-3">
 								<div class="form-group {{ $errors->has('razon_social')?'has-error':'' }}">
 									<label class="control-label" for="razon_social">Cargo: *</label>
@@ -60,15 +60,15 @@
 								</div>
 							</div>
 						</div>
-						
+
 						<div class="row">
 							<div class="col-md-1 col-md-offset-5">
 						        <a href="javascript:void(0);" class=" btn btn-sm btn-success add_button" title="Add field"><i class="fa fa-plus"></i></a>
 						    </div>
 						</div>
-					
+
 					</div>
-					
+
 					<div class="form-group text-right">
 						<a class="btn btn-flat btn-default" href="{{route('users.index')}}"><i class="fa fa-reply"></i> Atras</a>
 						<button class="btn btn-flat btn-primary" type="submit"><i class="fa fa-send"></i> Guardar</button>
@@ -91,7 +91,7 @@
 	$(document).ready(function(){
 		//registrar todo el fomulario
 			$("#form_pad").submit(function(e){
-				e.preventDefault();		
+				e.preventDefault();
 			//alert("fdfdfd")
 				$.ajax({
 					url: '{{route('planillas.store')}}',
@@ -102,7 +102,7 @@
 						alert(response.msg);
 					   window.location.reload();
 					},
-				});	
+				});
 			}); //fin guardar formulario
 
 /// aqui es para agregar personas
@@ -128,7 +128,7 @@
 								 '<input id="razon_social" class="form-control" type="text" name="email[]"  placeholder="Email" required>'+
 								'</div>'+
 							'</div>'+
-							'<div class="col-md-3">'+
+							'<div class="col-md-2">'+
 								'<div class="form-group">'+
 									'<label class="control-label" for="razon_social">Cargo: *</label>'+
 									'<input id="razon_social" class="form-control" type="text" name="cargo[]"  placeholder="Cargo" required>'+
@@ -164,7 +164,7 @@
 										'<input id="razon_social" class="form-control" type="text" name="accion[]" onkeyup="mayus(this);" placeholder="Acción" required >'+
 								'</div>'+
 							'</div>'+
-								
+
 							'<div class="col-md-1"><div class="form-group"><label class="control-label" for="razon_social">Eliminar: *</label><br><a href="javascript:void(0);" class="btn btn-sm btn-danger remove_button_acciones" title="Remove field">X</a></div></div>'+
 						 '</div>';
 

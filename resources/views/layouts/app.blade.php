@@ -7,7 +7,7 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Icon 16x16 -->
-    <link rel="icon" type="image/png" sizes="240x240" href="{{asset('img/logo.png')}}">
+    <link rel="icon" type="image/png" sizes="240x240" href="{{asset('img/psuv.jpeg')}}">
     <!-- Bootstrap 3.3.5 -->
     <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}">
     <!-- Font Awesome -->
@@ -19,24 +19,24 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="{{asset('css/_all-skins.min.css')}}">
-  	<style type="text/css">
-	    .perfil{
-			  position: relative;
-			  background: #fff;
-			  border: 1px solid #f4f4f4;
-			  padding: 20px;
-			  margin: 10px 25px;
-			}
-	  </style>
+    <style type="text/css">
+      .perfil{
+        position: relative;
+        background: #fff;
+        border: 1px solid #f4f4f4;
+        padding: 20px;
+        margin: 10px 25px;
+      }
+    </style>
   </head>
-  <body class="hold-transition skin-blue sidebar-mini">
+  <body class="hold-transition skin-red sidebar-mini">
     <div class="wrapper">
       <header class="main-header">
         <!-- Logo -->
         <a href="{{route('dashboard')}}" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini">
-          	<img class="img-responsive" src="{{ asset('img/logo_blanco.png') }}" alt="Logo" style="height:30px;margin:10px 0 0 10px">
+            <img class="img-responsive" src="{{ asset('img/logo_blanco.png') }}" alt="Logo" style="height:30px;margin:10px 0 0 10px">
           </span>
           <!-- logo for regular state and mobile devices -->
           <span class="logo-lg"><b>COMUNAS</b></span>
@@ -65,14 +65,14 @@
                       <small>LEYENDA DEL USUARIO ONLINE</small>
                     </p>
                   </li>
-                  
+
                   <!-- Menu Footer-->
                   <li class="user-footer">
-                  	<div class="pull-left">
-                  		<a href="{{route('perfil')}}" class="btn btn-flat btn-default"><i class="fa fa-user-circle" aria-hidden="true"></i> Perfil</a>
-                  	</div>
-                    
-                   	<div class="pull-right">
+                    <div class="pull-left">
+                      <a href="{{route('perfil')}}" class="btn btn-flat btn-default"><i class="fa fa-user-circle" aria-hidden="true"></i> Perfil</a>
+                    </div>
+
+                    <div class="pull-right">
                       <form id="logout-form" action="{{ route('logout') }}" method="POST">
                         {{ csrf_field() }}
                         <button class="btn btn-flat btn-default" type="submit"><i class="fa fa-sign-out" aria-hidden="true"></i> Salir</button>
@@ -141,7 +141,7 @@
                 <i class="fa fa-info-circle"></i> <span>Acerca De...</span>
                 <small class="label pull-right bg-yellow">IT</small>
               </a>
-            </li>       
+            </li>
           </ul>
         </section>
         <!-- /.sidebar -->
@@ -159,7 +159,7 @@
         </section>
         <!-- Main content -->
         <section class="content">
-        	@yield('content')
+          @yield('content')
         </section>
       </div><!-- /.content-wrapper -->
       <!--Fin-Contenido-->
@@ -178,14 +178,14 @@
     <script type="text/javascript" src="{{asset('plugins/datatables/dataTables.bootstrap.js')}}"></script>
     <script type="text/javascript">
       $(document).ready(function(){
-      	//Eliminar alertas que no contengan la clase alert-important luego de 7seg
-      	$('div.alert').not('.alert-important').delay(7000).slideUp(300);
+        //Eliminar alertas que no contengan la clase alert-important luego de 7seg
+        $('div.alert').not('.alert-important').delay(7000).slideUp(300);
 
-      	//activar Datatable
+        //activar Datatable
         $('.data-table').DataTable({
           responsive: true,
           language: {
-          	url:'{{asset("plugins/datatables/spanish.json")}}'
+            url:'{{asset("plugins/datatables/spanish.json")}}'
           }
         });
       })
