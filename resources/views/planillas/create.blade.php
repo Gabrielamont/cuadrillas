@@ -28,7 +28,7 @@
 					{{ method_field( 'POST' ) }}
 					{{ csrf_field() }}
 					<input type="hidden" name="id_user" value="{{Auth::user()->id}}">				
-					<hr>
+
 						<h2 class="text-center">Cuadrillas</h2>
 					<hr>
 						<div class="field_wrapper row">
@@ -62,40 +62,10 @@
 						</div>
 						
 						<div class="row">
-							<div class="col-md-1 col-md-offset-6">
+							<div class="col-md-1 col-md-offset-5">
 						        <a href="javascript:void(0);" class=" btn btn-sm btn-success add_button" title="Add field"><i class="fa fa-plus"></i></a>
 						    </div>
 						</div>
-
-						<hr>
-						 <h2 class="text-center">Acciones Realizadas</h2>
-					    <hr>
-						<div class="field_wrapper_acciones row">
-							<div class="col-md-12">
-								<div class="form-group {{ $errors->has('razon_social')?'has-error':'' }}">
-									<label class="control-label" for="razon_social">Accion: *</label>
-										<input id="razon_social" class="form-control" type="text" name="accion[]" onkeyup="mayus(this);" placeholder="Acción" required >
-								</div>
-							</div>
-						</div>
-						
-						
-						<div class="row">
-							<div class="col-md-1 col-md-offset-6">
-						        <a href="javascript:void(0);" class=" btn btn-sm btn-success add_button_acciones" title="Add field"><i class="fa fa-plus"></i></a>
-						    </div>
-						</div>
-
-						<hr>
-						 <h2 class="text-center">Observaciones</h2>
-					    <hr>
-						
-							<div class="col-md-12">
-								<div class="form-group">
-									<label class="control-label" for="razon_social">Observación: *</label>
-										<textarea class="form-control" name="observaciones" placeholder="Observación"></textarea>
-								</div>
-							</div>
 					
 					</div>
 					
