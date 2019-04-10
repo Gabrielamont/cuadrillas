@@ -34,7 +34,40 @@ class PlanillasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request->all());
+
+        $codigo = rand(11111, 99999);
+
+        $acta                = new Planillas;
+        $acta->codigo        = 'C' . $codigo;
+        $acta->id_user       = Auth::user()->id;
+        $acta->id_empresa    = $request->id_empresa;
+        $acta->observaciones = $request->observaciones;
+
+        if ($acta->save()) {
+            //for participantes
+            for ($i = 0; $i < count($request->nombre); $i++) {
+
+                $participante              = new Participantes;
+                $participante->codigo_acta = 'AC' . $codigo;
+                $participante->nombre      = $request->nombre[$i];
+                $participante->apellido    = $request->apellido[$i];
+                $participante->cargo       = $request->cargo[$i];
+                $participante->email       = $request->email[$i];
+                $participante->save();
+            } //fin for
+
+            //for acciones
+            for ($i = 0; $i < count($request->accion); $i++) {
+
+                $acciones              = new Acciones;
+                $acciones->codigo_acta = 'AC' . $codigo;
+                $acciones->accion      = $request->accion[$i];
+                $acciones->save();
+            } //fin for
+
+            return response()->json(['msg' => 'Se registro correctamente']);
+        }
     }
 
     /**
