@@ -5,14 +5,11 @@ namespace App\Http\Controllers;
 use Validator;
 use App\ConsejoComunal;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class ConsejoComunalController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         return view("cc.index",[
@@ -20,13 +17,6 @@ class ConsejoComunalController extends Controller
         ]);
     }
 
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         Validator::make($request->all(), [
@@ -43,24 +33,11 @@ class ConsejoComunalController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\ConsejoComunal  $consejoComunal
-     * @return \Illuminate\Http\Response
-     */
     public function show(ConsejoComunal $consejoComunal)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ConsejoComunal  $consejoComunal
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         Validator::make($request->all(), [
@@ -78,14 +55,20 @@ class ConsejoComunalController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\ConsejoComunal  $consejoComunal
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(ConsejoComunal $consejoComunal)
     {
         //
+    }
+    
+    public function buscarCC($id){
+      $data = ConsejoComunal::where("comuna_id", $id)->orderBy("id", "DESC")->get();
+      return response()->json($data);
+    }
+    
+    public function pdfCC()
+    {
+        $cc = ConsejoComunal::all();
+        $pdf = PDF::loadView('pdf.ccPdf', compact('cc'));
+        return $pdf->stream(date("d-m-Y h:m:s").'.pdf');
     }
 }

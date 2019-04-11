@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\{Comuna, ConsejoComunal, Vocero};
 use Validator;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 
 class ComunaController extends Controller
@@ -21,8 +22,13 @@ class ComunaController extends Controller
           "voceros" => Vocero::all(),
         ]);
     }
-
-
+    
+    public function pdfComuna()
+    {
+        $comunas = Comuna::all();
+        $pdf = PDF::loadView('pdf.comunaPdf', compact('comunas'));
+        return $pdf->stream(date("d-m-Y h:m:s").'.pdf');
+    }
 
     /**
      * Store a newly created resource in storage.

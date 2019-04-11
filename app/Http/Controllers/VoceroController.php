@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
 use App\Vocero;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class VoceroController extends Controller
 {
@@ -16,15 +18,12 @@ class VoceroController extends Controller
     {
         //
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    
+    public function pdfVocero()
     {
-        //
+        $voceros = Vocero::all();
+        $pdf = PDF::loadView('pdf.vocerosPdf', compact('voceros'));
+        return $pdf->stream(date("d-m-Y h:m:s").'.pdf');
     }
 
     /**
@@ -35,7 +34,24 @@ class VoceroController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Validator::make($request->all(), [
+          'cedula'        => 'required|unique:voceros',
+          'nombre'        => 'required',
+          'apellido'      => 'required',
+          'telefono'      => '',
+        ])->validate();
+      
+        for ($i = 0; $i < count($request->cedula); $i++) {
+          Vocero::create([
+            'cedula'    => $request->cedula[$i], 
+            'nombre'    => $request->nombre[$i], 
+            'apellido'  => $request->apellido[$i], 
+            'telefono'  => $request->telefono[$i], 
+            'cc_id'     => $request->cc_id, 
+          ]);      
+        }
+        
+        return response()->json('ok');
     }
 
     /**
@@ -50,26 +66,29 @@ class VoceroController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Vocero  $vocero
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Vocero $vocero)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Vocero  $vocero
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Vocero $vocero)
+    public function update(Request $request, $id)
     {
-        //
+        Validator::make($request->all(), [
+          'cedula'        => 'required|unique:voceros,id,'.$id.',id',
+          'nombre'        => 'required',
+          'apellido'      => 'required',
+          'telefono'      => '',
+        ])->validate();
+      
+        $v = Vocero::findOrFail($id)->fill($request->all());
+        
+        if ($v->save()) {
+            return back()->with([
+              'flash_message' => 'Vocero actualizado correctamente.',
+              'flash_class'   => 'alert-success'
+            ]);
+        }
     }
 
     /**

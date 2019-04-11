@@ -19,6 +19,8 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="{{asset('css/_all-skins.min.css')}}">
+    <!-- confirm - jquery -->
+    <link rel="stylesheet" href="{{ asset('plugins/confirm/jquery-confirm.min.css') }}">
   	<style type="text/css">
 	    .perfil{
 			  position: relative;
@@ -113,7 +115,6 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="{{route('comunas.create')}}"><i class="fa fa-circle-o"></i> Crear</a></li>
                 <li><a href="{{route('comunas.index')}}"><i class="fa fa-circle-o"></i> Ver</a></li>
               </ul>
             </li>
@@ -179,21 +180,43 @@
     
     <script src="{{ asset('js/vue.min.js') }}"></script>
     <script src="{{ asset('js/axios.min.js') }}"></script>
-    <script type="text/javascript">
-      $(document).ready(function(){
-      	//Eliminar alertas que no contengan la clase alert-important luego de 7seg
-      	$('div.alert').not('.alert-important').delay(7000).slideUp(300);
-
-      	//activar Datatable
-        $('.data-table').DataTable({
-          responsive: true,
-          language: {
-          	url:'{{asset("plugins/datatables/spanish.json")}}'
-          }
-        });
-      })
-    </script>
+    <!-- confirm - jquery -->
+    <script src="{{ asset('plugins/confirm/jquery-confirm.min.js') }}"></script>
 
     @yield('script')
+    
+    <script type="text/javascript">
+    //Eliminar alertas que no contengan la clase alert-important luego de 7seg
+    $('div.alert').not('.alert-important').delay(7000).slideUp(300);
+    
+    //activar Datatable
+    $('.data-table').DataTable({
+      responsive: true,
+      language: {
+        url:'{{asset("plugins/datatables/spanish.json")}}'
+      }
+    });
+    
+    function mensajes(title, content, icon, type){
+      $.alert({
+        title: title,
+        content: content,
+        icon: "fa"+icon,
+        theme: 'modern',
+        type: type
+      });
+    }
+    
+    // manipular errores por json
+    function eachErrors(data){
+      msj = '';
+      
+      $.each(data.responseJSON.errors, function(index, val) {
+        msj += "<li class='list-group-item list-group-item-danger'>"+ val +"</li>";
+      });
+      
+      return msj;
+    }
+    </script>
   </body>
 </html>

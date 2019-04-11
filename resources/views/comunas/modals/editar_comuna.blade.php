@@ -6,7 +6,7 @@
 				<div class="panel panel-warning">
 					<buttton class="close" type="button" data-dismiss="modal">&times;</buttton>
 					<div class="panel-heading text-center">
-						<h3><i class="fa fa-plus"></i> Editar comuna</h3>
+						<h3><i class="fa fa-edit"></i> Editar comuna</h3>
 					</div>
 					<div class="modal-body">
 						<div class="form-group">

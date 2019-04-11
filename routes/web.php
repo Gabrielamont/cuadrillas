@@ -33,6 +33,14 @@ Route::group(['middleware' => 'auth'], function() { //middleware auth
 	    'planillas'   => 'PlanillasController',
 	]);
   
+  // voceros
+  Route::get('cc/buscar/{id}', 'ConsejoComunalController@buscarCC');
+  
+  // pdfs
+  Route::get('pdfComuna', 'ComunaController@pdfComuna')->name("pdfComuna");
+  Route::get('pdfCC', 'ConsejoComunalController@pdfCC')->name("pdfCC");
+  Route::get('pdfVocero', 'VoceroController@pdfVocero')->name("pdfVocero");
+  
 	//* --- Perfil --- */
 	Route::get('/perfil', 'UserController@perfil')->name('perfil');
 	Route::patch('/perfil', 'UserController@update_perfil')->name('update_perfil');
