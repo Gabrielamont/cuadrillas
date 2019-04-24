@@ -19,6 +19,9 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="{{asset('css/_all-skins.min.css')}}">
+
+    <!-- confirm - jquery -->
+    <link rel="stylesheet" href="{{ asset('plugins/confirm/jquery-confirm.min.css') }}">
     <style type="text/css">
       .perfil{
         position: relative;
@@ -28,6 +31,7 @@
         margin: 10px 25px;
       }
     </style>
+
   </head>
   <body class="hold-transition skin-red sidebar-mini">
     <div class="wrapper">
@@ -109,6 +113,17 @@
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-laptop"></i>
+                <span>Comunas</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="{{route('comunas.index')}}"><i class="fa fa-circle-o"></i> Ver</a></li>
+              </ul>
+            </li>
+
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-laptop"></i>
                 <span>Planillas</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
@@ -128,19 +143,6 @@
                 <li><a href="{{route('planillas.create')}}"><i class="fa fa-circle-o"></i> Crear</a></li>
                 <li><a href="{{route('planillas.index')}}"><i class="fa fa-circle-o"></i> Ver</a></li>
               </ul>
-            </li>
-
-            <li>
-              <a href="#">
-                <i class="fa fa-plus-square"></i> <span>Ayuda</span>
-                <small class="label pull-right bg-red">PDF</small>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <i class="fa fa-info-circle"></i> <span>Acerca De...</span>
-                <small class="label pull-right bg-yellow">IT</small>
-              </a>
             </li>
           </ul>
         </section>
@@ -164,9 +166,10 @@
       </div><!-- /.content-wrapper -->
       <!--Fin-Contenido-->
       <footer class="main-footer">
-        <strong>Copyright &copy; 2016-2017 <a href="http://www.project4design.com">Project 4 Design C.A</a>.</strong> All rights reserved.
+        <strong>Copyright &copy; 2019.</strong> Todos los derechos reservados.
       </footer>
     </div><!-- .wrapper -->
+
     <!-- jQuery 2.1.4 -->
     <script type="text/javascript" src="{{asset('js/jQuery-2.1.4.min.js')}}"></script>
     <!-- Bootstrap 3.3.5 -->
@@ -176,21 +179,46 @@
     <!-- Data table -->
     <script type="text/javascript" src="{{asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('plugins/datatables/dataTables.bootstrap.js')}}"></script>
-    <script type="text/javascript">
-      $(document).ready(function(){
-        //Eliminar alertas que no contengan la clase alert-important luego de 7seg
-        $('div.alert').not('.alert-important').delay(7000).slideUp(300);
 
-        //activar Datatable
-        $('.data-table').DataTable({
-          responsive: true,
-          language: {
-            url:'{{asset("plugins/datatables/spanish.json")}}'
-          }
-        });
-      })
-    </script>
+    <script src="{{ asset('js/vue.min.js') }}"></script>
+    <script src="{{ asset('js/axios.min.js') }}"></script>
+    <!-- confirm - jquery -->
+    <script src="{{ asset('plugins/confirm/jquery-confirm.min.js') }}"></script>
 
     @yield('script')
+
+    <script type="text/javascript">
+    //Eliminar alertas que no contengan la clase alert-important luego de 7seg
+    $('div.alert').not('.alert-important').delay(7000).slideUp(300);
+
+    //activar Datatable
+    $('.data-table').DataTable({
+      responsive: true,
+      language: {
+        url:'{{asset("plugins/datatables/spanish.json")}}'
+      }
+    });
+
+    function mensajes(title, content, icon, type){
+      $.alert({
+        title: title,
+        content: content,
+        icon: "fa"+icon,
+        theme: 'modern',
+        type: type
+      });
+    }
+
+    // manipular errores por json
+    function eachErrors(data){
+      msj = '';
+
+      $.each(data.responseJSON.errors, function(index, val) {
+        msj += "<li class='list-group-item list-group-item-danger'>"+ val +"</li>";
+      });
+
+      return msj;
+    }
+    </script>
   </body>
 </html>

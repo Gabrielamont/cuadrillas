@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Comuna;
+use App\ConsejoComunal;
+use App\Vocero;use Illuminate\Http\Request;
 
 class PlanillasController extends Controller
 {
@@ -23,7 +25,10 @@ class PlanillasController extends Controller
      */
     public function create()
     {
-        return view('planillas.create');
+        $consejo = ConsejoComunal::all();
+        $comuna  = Comuna::all();
+
+        return view('planillas.create', ['consejo' => $consejo, 'comuna' => $comuna]);
     }
 
     /**
@@ -113,5 +118,26 @@ class PlanillasController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function comunas($id)
+    {
+        $comunas = Comuna::find($id)->cc;
+
+        return response()->json($comunas);
+    }
+
+    public function consejo($id)
+    {
+        $consejo = ConsejoComunal::find($id);
+
+        return response()->json($consejo);
+    }
+
+    public function sector($id)
+    {
+        $consejo = ConsejoComunal::find($id)->sectores;
+
+        return response()->json($consejo);
     }
 }

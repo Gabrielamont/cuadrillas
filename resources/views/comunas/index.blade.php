@@ -11,7 +11,7 @@
 	@include('partials.flash')
 	<!-- Info boxes -->
   <div class="row">
-
+    
   	<div class="col-md-3 col-sm-6 col-xs-12">
       <div class="info-box">
         <span class="info-box-icon bg-green"><i class="fa fa-arrows"></i></span>
@@ -21,7 +21,7 @@
         </div>
       </div>
     </div>
-
+    
     <div class="col-md-3 col-sm-6 col-xs-12">
       <div class="info-box">
         <span class="info-box-icon bg-navy"><i class="fa fa-users"></i></span>
@@ -31,7 +31,7 @@
         </div>
       </div>
     </div>
-
+    
     <div class="col-md-3 col-sm-6 col-xs-12">
       <div class="info-box">
         <span class="info-box-icon bg-red"><i class="fa fa-list-alt"></i></span>
@@ -41,19 +41,9 @@
         </div>
       </div>
     </div>
-
-    <div class="col-md-3 col-sm-6 col-xs-12">
-      <div class="info-box">
-        <span class="info-box-icon bg-red"><i class="fa fa-list"></i></span>
-        <div class="info-box-content">
-          <span class="info-box-text">Sectores</span>
-          <span class="info-box-number">{{ count($sectores) }}</span>
-        </div>
-      </div>
-    </div>
-
+    
   </div>
-
+  
 
   <!-- Comunas  -->
 	<div class="row">
@@ -62,13 +52,13 @@
 	      <div class="box-header with-border">
 	        <h3 class="box-title"><i class="fa fa-users"></i> Comunas</h3>
 	        <span class="pull-right">
-				<a href="#" data-target="#create_comuna" data-toggle="modal" class="btn btn-flat btn-success">
-	              <i class="fa fa-plus" aria-hidden="true"></i> Nueva comuna
-	            </a>
-				<a href="{{ route('pdfComuna') }}" class="btn btn-flat bg-purple" target="_blank">
-	              <i class="fa fa-file-o" aria-hidden="true"></i> Descargar
-	            </a>
-			</span>
+						<a href="#" data-target="#create_comuna" data-toggle="modal" class="btn btn-flat btn-success">
+              <i class="fa fa-plus" aria-hidden="true"></i> Nueva comuna
+            </a>
+						<a href="{{ route('pdfComuna') }}" class="btn btn-flat bg-purple" target="_blank">
+              <i class="fa fa-file-o" aria-hidden="true"></i> Descargar
+            </a>
+					</span>
 	      </div>
       	<div class="box-body">
 					<table class="table data-table table-bordered table-hover table-condensed">
@@ -93,8 +83,8 @@
                       <i class="fa fa-edit"></i> editar
                     </a>
 										<a href="#" class="btn btn-primary btn-xs" title="agregar consejos comunales" data-toggle="modal" data-target="#crear_cc_{{ $d->id }}">
-					                      <i class="fa fa-plus"></i> agregar cc
-					                    </a>
+                      <i class="fa fa-plus"></i> agregar cc
+                    </a>
 									</td>
 								</tr>
 							@endforeach
@@ -105,7 +95,7 @@
 		</div>
 	</div>
   @include("comunas.modals.create_comuna")
-
+	
   <!--Consejos comunales  -->
   <div class="row">
   	<div class="col-md-12">
@@ -131,63 +121,12 @@
 						</thead>
 						<tbody class="text-center">
 							@foreach($cc as $d)
-              					@include("comunas.modals.editar_cc")
-								<tr>
-									<td>{{ $loop->index+1 }}</td>
-									<td>{{ $d->nombre }}</td>
-									<td>{{ $d->descripcion }}</td>
-									<td class="success">{{ $d->comuna->nombre }}</td>
-									<td>
-										<a href="#" class="btn btn-warning btn-xs" title="Editar" data-toggle="modal" data-target="#editar_cc_{{ $d->id }}">
-					                      <i class="fa fa-edit"></i> editar
-					                    </a>
-					                    <a href="#" class="btn btn-primary btn-xs" title="agregar sector" data-toggle="modal" data-target="#crear_sector_{{ $d->id }}">
-					                      <i class="fa fa-plus"></i> agregar sector
-					                    </a>
-
-									</td>
-								</tr>
-								  @include("comunas.modals.create_sector")
-							@endforeach
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-	 <!-- Sectores  -->
-  <div class="row">
-  	<div class="col-md-12">
-    	<div class="box box-danger">
-	      <div class="box-header with-border">
-	        <h3 class="box-title"><i class="fa fa-users"></i> Sectores</h3>
-	        <span class="pull-right">
-	            <a href="#" class="btn btn-flat bg-purple" target="_blank">
-	              <i class="fa fa-file-o" aria-hidden="true"></i> Descargar
-	            </a>
-			</span>
-	      </div>
-      	<div class="box-body">
-					<table class="table data-table table-bordered table-hover table-condensed">
-						<thead>
-							<tr>
-								<th class="text-center">#</th>
-								<th class="text-center">Nombre</th>
-								<th class="text-center">Descripcion</th>
-								<th class="text-center bg-success">Consejo Comunal</th>
-								<th class="text-center">Accion</th>
-							</tr>
-						</thead>
-						<tbody class="text-center">
-							@foreach($sectores as $d)
               @include("comunas.modals.editar_cc")
 								<tr>
 									<td>{{ $loop->index+1 }}</td>
 									<td>{{ $d->nombre }}</td>
 									<td>{{ $d->descripcion }}</td>
-									<td class="success">{{ $d->consejo->nombre }}</td>
+									<td class="success">{{ $d->comuna->nombre }}</td>
 									<td>
 										<a href="#" class="btn btn-warning btn-xs" title="Editar" data-toggle="modal" data-target="#editar_cc_{{ $d->id }}">
                       <i class="fa fa-edit"></i> editar
@@ -201,8 +140,8 @@
 			</div>
 		</div>
 	</div>
-
-
+  
+  
   <!-- voceros  -->
   <div class="row">
   	<div class="col-md-12">
@@ -265,11 +204,11 @@ contar_voceros = 1;
 $("#btn_add_vocero").click(function(event) {
 
   	contar_voceros++;
-
+    
     $("#nuevo_vocero").append("<div id='nuevo_vocero"+contar_voceros+"'></div>");
     $("#nuevo_vocero"+contar_voceros+"").html($("#section_vocero").html());
     $("#nuevo_vocero"+contar_voceros+" input#cedula1").removeAttr("id").attr('id', 'cedula'+contar_voceros);
-
+    
     $("#nuevo_vocero"+contar_voceros+"").append(
       "<div class='form-group col-sm-1'>"+
       "<label>---</label><br>"+
@@ -342,7 +281,7 @@ $("#form_voceros").on('submit', function(e) {
 			console.log("complete");
 		});
 	}
-
+	
 });
 
 

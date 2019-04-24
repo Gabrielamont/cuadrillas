@@ -31,6 +31,35 @@
 
 						<h2 class="text-center">Cuadrillas</h2>
 					<hr>
+							<div class="col-md-4">
+								<div class="form-group {{ $errors->has('razon_social')?'has-error':'' }}">
+									<label class="control-label" for="razon_social">Comuna: *</label>
+										<select class="form-control" id="comunas">
+											<option value="">Seleccione...</option>
+											@foreach($comuna as $c)
+												<option value="{{$c->id}}">{{$c->nombre}}</option>
+											@endforeach
+										</select>
+								</div>
+							</div>
+
+							<div class="col-md-4">
+								<div class="form-group {{ $errors->has('razon_social')?'has-error':'' }}">
+									<label class="control-label" for="razon_social">Consejo Comunal: *</label>
+										<select class="form-control" id="select_consejo">
+
+										</select>
+								</div>
+							</div>
+
+							<div class="col-md-4">
+								<div class="form-group {{ $errors->has('razon_social')?'has-error':'' }}">
+									<label class="control-label" for="razon_social">Sector: *</label>
+										<select class="form-control" id="select_sector">
+
+										</select>
+								</div>
+							</div>
 						<div class="field_wrapper row">
 							<div class="col-md-3">
 								<div class="form-group {{ $errors->has('razon_social')?'has-error':'' }}">
@@ -89,6 +118,42 @@
 	}
 
 	$(document).ready(function(){
+
+		//select dinamicos
+		$("#comunas").change(function(event) {
+			event.preventDefault();
+
+
+			var url = '{{ route("comuna.dinamico", ":id") }}';
+				url = url.replace(':id', $(this).val());
+
+			$.get(url, function(data) {
+				var datos = '';
+				$.each(data, function(index, val) {
+					 datos += '<option value="'+val.id+'">'+val.nombre+'</option>';
+				});
+
+				$("#select_consejo").append('<option value="">Seleccione...</option>'+datos);
+			});
+		});
+
+		$("#select_consejo").change(function(event) {
+			event.preventDefault();
+
+
+			var url = '{{ route("sector.dinamico", ":id") }}';
+				url = url.replace(':id', $(this).val());
+
+			$.get(url, function(data) {
+				 var datos = '';
+				$.each(data, function(index, val) {
+					datos += '<option value="'+val.id+'">'+val.nombre+'</option>';
+				});
+				console.log(datos);
+				 $("#select_sector").append('<option value="">Seleccione...</option>'+datos);
+
+			});
+		});
 		//registrar todo el fomulario
 			$("#form_pad").submit(function(e){
 				e.preventDefault();
