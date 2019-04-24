@@ -133,7 +133,7 @@
 					 datos += '<option value="'+val.id+'">'+val.nombre+'</option>';
 				});
 
-				$("#select_consejo").append('<option value="">Seleccione...</option>'+datos);
+				$("#select_consejo").html('<option value="">Seleccione...</option>'+datos);
 			});
 		});
 
@@ -150,7 +150,7 @@
 					datos += '<option value="'+val.id+'">'+val.nombre+'</option>';
 				});
 				console.log(datos);
-				 $("#select_sector").append('<option value="">Seleccione...</option>'+datos);
+				 $("#select_sector").html('<option value="">Seleccione...</option>'+datos);
 
 			});
 		});
