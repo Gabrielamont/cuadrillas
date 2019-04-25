@@ -6,7 +6,8 @@ use App\Comuna;
 use App\ConsejoComunal;
 use App\Participantes;
 use App\Planillas;
-use App\Vocero;use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade as PDF;
+use Illuminate\Http\Request;
 
 class PlanillasController extends Controller
 {
@@ -90,7 +91,9 @@ class PlanillasController extends Controller
     {
         $planilla = Planillas::findOrfail($id);
 
-        return view('planillas.show', ['planilla' => $planilla]);
+        $participantes = Participantes::where('planilla_id', $id)->get();
+
+        return view('planillas.show', ['planilla' => $planilla, 'participantes' => $participantes]);
     }
 
     /**
@@ -124,7 +127,23 @@ class PlanillasController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        $participantes = Participantes::where('planilla_id', $id);
+
+        $planilla = Planillas::findOrFail($id);
+
+        if ($participantes->delete() && $planilla->delete()) {
+            return redirect('planillas')->with([
+                'flash_class'   => 'alert-success',
+                'flash_message' => 'Cuadrilla eliminada con exito.',
+            ]);
+        } else {
+            return redirect('planillas')->with([
+                'flash_class'     => 'alert-danger',
+                'flash_message'   => 'Ha ocurrido un error.',
+                'flash_important' => true,
+            ]);
+        }
     }
 
     public function comunas($id)
@@ -146,5 +165,13 @@ class PlanillasController extends Controller
         $consejo = ConsejoComunal::find($id)->sectores;
 
         return response()->json($consejo);
+    }
+    public function pdf($id)
+    {
+        $planilla      = Planillas::findOrfail($id);
+        $participantes = Participantes::where('planilla_id', $id)->get();
+
+        $pdf = PDF::loadView('pdf.pdfCuadrilla', ['planilla' => $planilla, 'participantes' => $participantes]);
+        return $pdf->stream($planilla->codigo . '.pdf');
     }
 }

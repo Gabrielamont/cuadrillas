@@ -25,4 +25,9 @@ class Planillas extends Model
     {
         return $this->hasMany("App\Participantes", "planilla_id")->count();
     }
+
+    public function participantes()
+    {
+        return $this->hasMany("App\Participantes", "planilla_id");
+    }
 }

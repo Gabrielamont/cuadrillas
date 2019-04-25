@@ -46,6 +46,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('pdfComuna', 'ComunaController@pdfComuna')->name("pdfComuna");
     Route::get('pdfCC', 'ConsejoComunalController@pdfCC')->name("pdfCC");
     Route::get('pdfVocero', 'VoceroController@pdfVocero')->name("pdfVocero");
+    Route::get('plan/{id}', 'PlanillasController@pdf')->name('planillas.pdf');
 
     //* --- Perfil --- */
     Route::get('/perfil', 'UserController@perfil')->name('perfil');

@@ -85,7 +85,7 @@
 							<div class="col-md-3">
 								<div class="form-group {{ $errors->has('razon_social')?'has-error':'' }}">
 									<label class="control-label" for="razon_social">Correo: *</label>
-									<input id="razon_social" class="form-control" type="text" name="correo[]"   placeholder="Correo" required >
+									<input id="razon_social" class="form-control" type="email" name="correo[]"   placeholder="Correo" required >
 								</div>
 							</div>
 						</div>
@@ -194,7 +194,7 @@
 							'<div class="col-md-2">'+
 								'<div class="form-group">'+
 									'<label class="control-label" for="razon_social">Correo: *</label>'+
-									'<input id="razon_social" class="form-control" type="text" name="correo[]"  placeholder="Correo Electronico">'+
+									'<input id="razon_social" class="form-control" type="email" name="correo[]"  placeholder="Correo Electronico">'+
 								'</div>'+
 							'</div>'+
 							'<div class="col-md-1"><div class="form-group"><label class="control-label" for="razon_social">Eliminar: *</label><br><a href="javascript:void(0);" class="btn btn-sm btn-danger remove_button" title="Remove field">X</a></div></div>'+
