@@ -21,7 +21,7 @@
 	<body class="hold-transition login-page">
 	  <div class="login-box">
 	    <div class="login-logo">
-	    <center><img class="img-responsive" src="{{ asset('img/logo.png') }}" alt="Logo" style="height:75px"></center>
+	    <center><img class="img-responsive" src="{{ asset('img/psuv.jpeg') }}" alt="Logo" style="height:75px"></center>
 	      <a href="#"><b>{{ config('app.name') }}</b></a>
 	    </div><!-- /.login-logo -->
 	    <div class="login-box-body">
@@ -32,7 +32,7 @@
 	          @foreach($errors->all() as $error)
 	             <li>{{$error}}</li>
 	          @endforeach
-	         	</ul>  
+	         	</ul>
 	        </div>
 	      @endif
 	      <form action="{{route('auth')}}" method="POST">
@@ -48,7 +48,7 @@
 	        <div class="form-group">
 	            <button id="b-login" type="submit" class="btn btn-primary btn-block btn-flat">Login</button>
 	        </div>
-	      </form> 
+	      </form>
 	    </div><!-- /.login-box-body -->
 	  </div><!-- /.login-box -->
 	</body>

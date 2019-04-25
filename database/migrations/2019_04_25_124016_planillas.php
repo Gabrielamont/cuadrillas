@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateVocerosTable extends Migration
+class Planillas extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,20 @@ class CreateVocerosTable extends Migration
      */
     public function up()
     {
-        Schema::create('voceros', function (Blueprint $table) {
+        Schema::create('planillas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('cedula')->nullable();
-            $table->string('nombre')->nullable();
-            $table->string('apellido')->nullable();
-            $table->string('telefono')->nullable();
+            $table->string('codigo');
             $table->integer('cc_id')->unsigned();
-
             $table->foreign('cc_id')->references('id')
                 ->on('consejos_comunales')
+                ->onDelete('cascade');
+            $table->integer('comuna_id')->unsigned();
+            $table->foreign('comuna_id')->references('id')
+                ->on('comunas')
+                ->onDelete('cascade');
+            $table->integer('sector_id')->unsigned();
+            $table->foreign('sector_id')->references('id')
+                ->on('sectores')
                 ->onDelete('cascade');
             $table->timestamps();
         });
@@ -35,6 +39,6 @@ class CreateVocerosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('voceros');
+        Schema::dropIfExists('planillas');
     }
 }

@@ -34,7 +34,7 @@
 							<div class="col-md-4">
 								<div class="form-group {{ $errors->has('razon_social')?'has-error':'' }}">
 									<label class="control-label" for="razon_social">Comuna: *</label>
-										<select class="form-control" id="comunas">
+										<select class="form-control" id="comunas" name="comuna_id">
 											<option value="">Seleccione...</option>
 											@foreach($comuna as $c)
 												<option value="{{$c->id}}">{{$c->nombre}}</option>
@@ -46,7 +46,7 @@
 							<div class="col-md-4">
 								<div class="form-group {{ $errors->has('razon_social')?'has-error':'' }}">
 									<label class="control-label" for="razon_social">Consejo Comunal: *</label>
-										<select class="form-control" id="select_consejo">
+										<select class="form-control" id="select_consejo" name="cc_id">
 
 										</select>
 								</div>
@@ -55,7 +55,7 @@
 							<div class="col-md-4">
 								<div class="form-group {{ $errors->has('razon_social')?'has-error':'' }}">
 									<label class="control-label" for="razon_social">Sector: *</label>
-										<select class="form-control" id="select_sector">
+										<select class="form-control" id="select_sector" name="sector_id">
 
 										</select>
 								</div>
@@ -77,15 +77,15 @@
 
 							<div class="col-md-3">
 								<div class="form-group {{ $errors->has('razon_social')?'has-error':'' }}">
-									<label class="control-label" for="razon_social">Email: *</label>
-										<input id="razon_social" class="form-control" type="text" name="email[]"   placeholder="Email" required >
+									<label class="control-label" for="razon_social">Telefono: *</label>
+										<input id="razon_social" class="form-control" type="text" name="telefono[]"   placeholder="Telefono" required >
 								</div>
 							</div>
 
 							<div class="col-md-3">
 								<div class="form-group {{ $errors->has('razon_social')?'has-error':'' }}">
-									<label class="control-label" for="razon_social">Cargo: *</label>
-									<input id="razon_social" class="form-control" type="text" name="cargo[]"   placeholder="Cargo" required >
+									<label class="control-label" for="razon_social">Correo: *</label>
+									<input id="razon_social" class="form-control" type="text" name="correo[]"   placeholder="Correo" required >
 								</div>
 							</div>
 						</div>
@@ -139,8 +139,6 @@
 
 		$("#select_consejo").change(function(event) {
 			event.preventDefault();
-
-
 			var url = '{{ route("sector.dinamico", ":id") }}';
 				url = url.replace(':id', $(this).val());
 
@@ -184,19 +182,19 @@
 								'<div class="col-md-3">'+
 								'<div class="form-group">'+
 									'<label class="control-label" for="razon_social">Apellido: *</label>'+
-										'<input id="razon_social" class="form-control" type="text" name="apellido[]" onkeyup="mayus(this);"  placeholder="Producto" required>'+
+										'<input id="razon_social" class="form-control" type="text" name="apellido[]" onkeyup="mayus(this);"  placeholder="Apellido" required>'+
 								'</div>'+
 							'</div>'+
 							'<div class="col-md-3">'+
 								'<div class="form-group">'+
-								 '<label class="control-label" for="razon_social">Email: *</label>'+
-								 '<input id="razon_social" class="form-control" type="text" name="email[]"  placeholder="Email" required>'+
+								 '<label class="control-label" for="razon_social">Telefono: *</label>'+
+								 '<input id="razon_social" class="form-control" type="text" name="telefono[]"  placeholder="Telefono" required>'+
 								'</div>'+
 							'</div>'+
 							'<div class="col-md-2">'+
 								'<div class="form-group">'+
-									'<label class="control-label" for="razon_social">Cargo: *</label>'+
-									'<input id="razon_social" class="form-control" type="text" name="cargo[]"  placeholder="Cargo" required>'+
+									'<label class="control-label" for="razon_social">Correo: *</label>'+
+									'<input id="razon_social" class="form-control" type="text" name="correo[]"  placeholder="Correo Electronico">'+
 								'</div>'+
 							'</div>'+
 							'<div class="col-md-1"><div class="form-group"><label class="control-label" for="razon_social">Eliminar: *</label><br><a href="javascript:void(0);" class="btn btn-sm btn-danger remove_button" title="Remove field">X</a></div></div>'+

@@ -40,7 +40,7 @@
         <a href="{{route('dashboard')}}" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini">
-            <img class="img-responsive" src="{{ asset('img/logo_blanco.png') }}" alt="Logo" style="height:30px;margin:10px 0 0 10px">
+           <!--  <img class="img-responsive" src="{{ asset('img/logo_blanco.png') }}" alt="Logo" style="height:30px;margin:10px 0 0 10px"> -->
           </span>
           <!-- logo for regular state and mobile devices -->
           <span class="logo-lg"><b>COMUNAS</b></span>
@@ -63,12 +63,12 @@
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
-                  <li class="user-header">
+                 <!--  <li class="user-header">
                     <p>
                       DESCRIPCCION
                       <small>LEYENDA DEL USUARIO ONLINE</small>
                     </p>
-                  </li>
+                  </li> -->
 
                   <!-- Menu Footer-->
                   <li class="user-footer">

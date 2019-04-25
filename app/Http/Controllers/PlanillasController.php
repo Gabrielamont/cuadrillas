@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Comuna;
 use App\ConsejoComunal;
+use App\Participantes;
+use App\Planillas;
 use App\Vocero;use Illuminate\Http\Request;
 
 class PlanillasController extends Controller
@@ -15,7 +17,9 @@ class PlanillasController extends Controller
      */
     public function index()
     {
-        return "index";
+        $planillas = Planillas::all();
+
+        return view('planillas.index', ['planillas' => $planillas]);
     }
 
     /**
@@ -39,37 +43,38 @@ class PlanillasController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->all());
+        // dd($request->all());
 
         $codigo = rand(11111, 99999);
 
-        $acta                = new Planillas;
-        $acta->codigo        = 'C' . $codigo;
-        $acta->id_user       = Auth::user()->id;
-        $acta->id_empresa    = $request->id_empresa;
-        $acta->observaciones = $request->observaciones;
+        $planilla         = new Planillas;
+        $planilla->codigo = 'C' . $codigo;
+        //$planilla->id_user       = Auth::user()->id;
+        $planilla->cc_id     = $request->cc_id;
+        $planilla->comuna_id = $request->comuna_id;
+        $planilla->sector_id = $request->sector_id;
 
-        if ($acta->save()) {
+        if ($planilla->save()) {
             //for participantes
             for ($i = 0; $i < count($request->nombre); $i++) {
 
                 $participante              = new Participantes;
-                $participante->codigo_acta = 'AC' . $codigo;
+                $participante->planilla_id = $planilla->id;
                 $participante->nombre      = $request->nombre[$i];
                 $participante->apellido    = $request->apellido[$i];
-                $participante->cargo       = $request->cargo[$i];
-                $participante->email       = $request->email[$i];
+                $participante->telefono    = $request->telefono[$i];
+                $participante->correo      = $request->correo[$i];
                 $participante->save();
             } //fin for
 
-            //for acciones
-            for ($i = 0; $i < count($request->accion); $i++) {
+            // //for acciones
+            // for ($i = 0; $i < count($request->accion); $i++) {
 
-                $acciones              = new Acciones;
-                $acciones->codigo_acta = 'AC' . $codigo;
-                $acciones->accion      = $request->accion[$i];
-                $acciones->save();
-            } //fin for
+            //     $acciones              = new Acciones;
+            //     $acciones->codigo_acta = 'AC' . $codigo;
+            //     $acciones->accion      = $request->accion[$i];
+            //     $acciones->save();
+            // } //fin for
 
             return response()->json(['msg' => 'Se registro correctamente']);
         }
@@ -83,7 +88,9 @@ class PlanillasController extends Controller
      */
     public function show($id)
     {
-        //
+        $planilla = Planillas::findOrfail($id);
+
+        return view('planillas.show', ['planilla' => $planilla]);
     }
 
     /**
