@@ -34,7 +34,7 @@
 							<div class="col-md-4">
 								<div class="form-group {{ $errors->has('razon_social')?'has-error':'' }}">
 									<label class="control-label" for="razon_social">Comuna: *</label>
-										<select class="form-control" id="comunas" name="comuna_id">
+										<select class="form-control" id="comunas" name="comuna_id" required="">
 											<option value="">Seleccione...</option>
 											@foreach($comuna as $c)
 												<option value="{{$c->id}}">{{$c->nombre}}</option>
@@ -46,7 +46,7 @@
 							<div class="col-md-4">
 								<div class="form-group {{ $errors->has('razon_social')?'has-error':'' }}">
 									<label class="control-label" for="razon_social">Consejo Comunal: *</label>
-										<select class="form-control" id="select_consejo" name="cc_id">
+										<select class="form-control" id="select_consejo" name="cc_id" required="">
 
 										</select>
 								</div>
@@ -55,7 +55,7 @@
 							<div class="col-md-4">
 								<div class="form-group {{ $errors->has('razon_social')?'has-error':'' }}">
 									<label class="control-label" for="razon_social">Sector: *</label>
-										<select class="form-control" id="select_sector" name="sector_id">
+										<select class="form-control" id="select_sector" name="sector_id" required="">
 
 										</select>
 								</div>
