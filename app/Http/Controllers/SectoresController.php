@@ -82,7 +82,19 @@ class SectoresController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Validator::make($request->all(), [
+            'nombre'      => 'required',
+            'descripcion' => '',
+        ])->validate();
+
+        $sector = Sectores::findOrFail($id)->fill($request->all());
+
+        if ($sector->save()) {
+            return back()->with([
+                'flash_message' => 'Sector actualizado correctamente.',
+                'flash_class'   => 'alert-success',
+            ]);
+        }
     }
 
     /**

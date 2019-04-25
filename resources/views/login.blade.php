@@ -46,7 +46,7 @@
 	          <span class="glyphicon glyphicon-lock form-control-feedback"></span>
 	        </div>
 	        <div class="form-group">
-	            <button id="b-login" type="submit" class="btn btn-primary btn-block btn-flat">Login</button>
+	            <button id="b-login" type="submit" class="btn btn-primary btn-block btn-flat">Entrar</button>
 	        </div>
 	      </form>
 	    </div><!-- /.login-box-body -->

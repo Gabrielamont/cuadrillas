@@ -82,8 +82,8 @@
 						</thead>
 						<tbody class="text-center">
 							@foreach($comunas as $d)
-              @include("comunas.modals.editar_comuna")
-              @include("comunas.modals.crear_cc")
+		              @include("comunas.modals.editar_comuna")
+		              @include("comunas.modals.crear_cc")
 								<tr>
 									<td>{{ $loop->index+1 }}</td>
 									<td>{{ $d->nombre }}</td>
@@ -182,14 +182,14 @@
 						</thead>
 						<tbody class="text-center">
 							@foreach($sectores as $d)
-              @include("comunas.modals.editar_cc")
+              			@include("comunas.modals.editar_sector")
 								<tr>
 									<td>{{ $loop->index+1 }}</td>
 									<td>{{ $d->nombre }}</td>
 									<td>{{ $d->descripcion }}</td>
 									<td class="success">{{ $d->consejo->nombre }}</td>
 									<td>
-										<a href="#" class="btn btn-warning btn-xs" title="Editar" data-toggle="modal" data-target="#editar_cc_{{ $d->id }}">
+										<a href="#" class="btn btn-warning btn-xs" title="Editar" data-toggle="modal" data-target="#editar_sector_{{ $d->id }}">
                       <i class="fa fa-edit"></i> editar
                     </a>
 									</td>
