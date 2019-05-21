@@ -168,7 +168,12 @@ class PlanillasController extends Controller
     }
     public function pdf($id)
     {
-        $planilla      = Planillas::findOrfail($id);
+        $planilla = Planillas::findOrfail($id);
+
+        // $voceros = Vocero::where('cc_id', $planilla->consejo->id)->get();
+
+        // dd($voceros);
+
         $participantes = Participantes::where('planilla_id', $id)->get();
 
         $pdf = PDF::loadView('pdf.pdfCuadrilla', ['planilla' => $planilla, 'participantes' => $participantes]);
