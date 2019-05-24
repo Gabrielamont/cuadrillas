@@ -88,4 +88,11 @@ class ComunaController extends Controller
     {
         //
     }
+
+    public function show($id)
+    {
+        $comuna = Comuna::findOrFail($id);
+
+        return view('comunas.view',['comuna' => $comuna]);
+    }
 }

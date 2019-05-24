@@ -33,9 +33,13 @@ class ConsejoComunalController extends Controller
         }
     }
 
-    public function show(ConsejoComunal $consejoComunal)
+    public function show($id)
     {
-        //
+        $cc = ConsejoComunal::findOrFail($id);
+
+        //dd($cc);
+
+        return view('cc.view',['cc' => $cc]);
     }
 
     public function update(Request $request, $id)

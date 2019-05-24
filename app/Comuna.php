@@ -10,11 +10,13 @@ class Comuna extends Model
     
     protected $fillable = ["nombre", "descripcion"];
     
-    public function cc(){
+    public function cc()
+    {
       return $this->hasMany("App\ConsejoComunal", "comuna_id");
     }
     
-    public function ccTotal(){
+    public function ccTotal()
+    {
       return $this->cc()->count();
     }
 }
