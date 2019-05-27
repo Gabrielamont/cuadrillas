@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Validator;
-use App\Vocero;
+use App\{Vocero, ConsejoComunal};
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
 
@@ -23,6 +23,14 @@ class VoceroController extends Controller
     {
         $voceros = Vocero::all();
         $pdf = PDF::loadView('pdf.vocerosPdf', compact('voceros'));
+        return $pdf->stream(date("d-m-Y h:m:s").'.pdf');
+    }
+
+    public function voceroPdf(Request $request)
+    {
+        $voceros = Vocero::where("cc_id", $request->cc_id)->get();
+        $cc = ConsejoComunal::findOrFail($request->cc_id);
+        $pdf = PDF::loadView('pdf.vocerosPdfPorCC', compact('voceros', 'cc'));
         return $pdf->stream(date("d-m-Y h:m:s").'.pdf');
     }
 

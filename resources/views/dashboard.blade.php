@@ -57,20 +57,20 @@
 
   <!-- Comunas  -->
 	<div class="row">
-  	<div class="col-md-12">
-    	<div class="box box-danger">
-	      <div class="box-header with-border">
-	        <h3 class="box-title"><i class="fa fa-users"></i> Comunas</h3>
-	        <span class="pull-right">
-				<a href="#" data-target="#create_comuna" data-toggle="modal" class="btn btn-flat btn-success">
-	              <i class="fa fa-plus" aria-hidden="true"></i> Nueva comuna
-	            </a>
-				<a href="{{ route('pdfComuna') }}" class="btn btn-flat bg-purple" target="_blank">
-	              <i class="fa fa-file-o" aria-hidden="true"></i> Descargar
-	            </a>
-			</span>
-	      </div>
-      	<div class="box-body">
+  	    <div class="col-md-12">
+    	    <div class="box box-danger">
+	            <div class="box-header with-border">
+	                <h3 class="box-title"><i class="fa fa-users"></i> Comunas</h3>
+        	        <span class="pull-right">
+        				<a href="#" data-target="#create_comuna" data-toggle="modal" class="btn btn-flat btn-success">
+        	              <i class="fa fa-plus" aria-hidden="true"></i> Nueva comuna
+        	            </a>
+        				<a href="{{ route('pdfComuna') }}" class="btn btn-flat bg-purple" target="_blank">
+        	              <i class="fa fa-file-o" aria-hidden="true"></i> Descargar
+        	            </a>
+        			</span>
+	            </div>
+      	        <div class="box-body">
 					<table class="table data-table table-bordered table-hover table-condensed">
 						<thead>
 							<tr>
@@ -95,7 +95,7 @@
 										<a href="#" class="btn btn-primary btn-xs" title="agregar consejos comunales" data-toggle="modal" data-target="#crear_cc_{{ $d->id }}">
 					                      <i class="fa fa-plus"></i> agregar cc
 					                    </a>
-					                    <a href="{{route('comuna.pdf',['id' => $d->id])}}" class="btn btn-danger btn-xs" title="pdf" d>
+					                    <a href="{{route('comuna.pdf',['id' => $d->id])}}" class="btn btn-danger btn-xs" title="pdf" target="_blank">
 					                      <i class="fa fa-print"></i> pdf
 					                    </a>
 									</td>
@@ -107,7 +107,7 @@
 			</div>
 		</div>
 	</div>
-  @include("comunas.modals.create_comuna")
+    @include("comunas.modals.create_comuna")
 
   <!--Consejos comunales  -->
   <div class="row">
@@ -147,7 +147,7 @@
 					                    <a href="#" class="btn btn-primary btn-xs" title="agregar sector" data-toggle="modal" data-target="#crear_sector_{{ $d->id }}">
 					                      <i class="fa fa-plus"></i> agregar sector
 					                    </a>
-					                     <a href="#" class="btn btn-danger btn-xs" title="pdf" d>
+					                     <a href="{{ route('cc.pdf', $d->id) }}" class="btn btn-danger btn-xs" title="pdf consejo comunal" target="_blank">
 					                      <i class="fa fa-print"></i> pdf
 					                    </a>
 
@@ -164,18 +164,18 @@
 
 
 	 <!-- Sectores  -->
-  <div class="row">
-  	<div class="col-md-12">
-    	<div class="box box-danger">
-	      <div class="box-header with-border">
-	        <h3 class="box-title"><i class="fa fa-users"></i> Sectores</h3>
-	        <span class="pull-right">
-	            <a href="#" class="btn btn-flat bg-purple" target="_blank">
-	              <i class="fa fa-file-o" aria-hidden="true"></i> Descargar
-	            </a>
-			</span>
-	      </div>
-      	<div class="box-body">
+    <div class="row">
+  	    <div class="col-md-12">
+    	    <div class="box box-danger">
+	            <div class="box-header with-border">
+    	            <h3 class="box-title"><i class="fa fa-users"></i> Sectores</h3>
+        	        <span class="pull-right">
+        	            <a href="#" class="btn btn-flat bg-purple" target="_blank">
+        	              <i class="fa fa-file-o" aria-hidden="true"></i> Descargar
+        	            </a>
+        			</span>
+	            </div>
+      	        <div class="box-body">
 					<table class="table data-table table-bordered table-hover table-condensed">
 						<thead>
 							<tr>
@@ -188,7 +188,7 @@
 						</thead>
 						<tbody class="text-center">
 							@foreach($sectores as $d)
-              			@include("comunas.modals.editar_sector")
+              			        @include("comunas.modals.editar_sector")
 								<tr>
 									<td>{{ $loop->index+1 }}</td>
 									<td>{{ $d->nombre }}</td>
@@ -196,10 +196,10 @@
 									<td class="success">{{ $d->consejo->nombre }}</td>
 									<td>
 										<a href="#" class="btn btn-warning btn-xs" title="Editar" data-toggle="modal" data-target="#editar_sector_{{ $d->id }}">
-					                      <i class="fa fa-edit"></i> editar
+					                       <i class="fa fa-edit"></i> editar
 					                    </a>
-					                     <a href="#" class="btn btn-danger btn-xs" title="pdf" d>
-					                      <i class="fa fa-print"></i> pdf
+					                    <a href="{{ route('sector.pdf', $d->id) }}" class="btn btn-danger btn-xs" title="pdf sector" target="_blank">
+					                       <i class="fa fa-print"></i> pdf
 					                    </a>
 									</td>
 								</tr>
@@ -212,22 +212,41 @@
 	</div>
 
 
-  <!-- voceros  -->
-  <div class="row">
-  	<div class="col-md-12">
-    	<div class="box box-danger">
-	      <div class="box-header with-border">
-	        <h3 class="box-title"><i class="fa fa-users"></i> Voceros</h3>
-	        <span class="pull-right">
-            <a href="#" data-target="#crear_vocero" data-toggle="modal" class="btn btn-flat btn-danger">
-              <i class="fa fa-plus" aria-hidden="true"></i> Nueva vocero
-            </a>
-            <a href="{{ route('pdfVocero') }}" class="btn btn-flat bg-purple" target="_blank">
-              <i class="fa fa-file-o" aria-hidden="true"></i> Descargar
-            </a>
-					</span>
-	      </div>
-      	<div class="box-body">
+    <!-- voceros  -->
+    <div class="row">
+  	    <div class="col-md-12">
+    	    <div class="box box-danger">
+	            <div class="box-header with-border">
+        	        <h3 class="box-title">
+                        <i class="fa fa-users"></i> Voceros
+                        <hr>
+                        <form action="{{ route('voceroPdf') }}" method="POST" class="form-inline">
+                            {{ csrf_field() }}
+                            <div class="form-group">
+                                <label>Consejo comunal</label>
+                                <select name="cc_id" class="form-control" required="">
+                                    @foreach($cc as $d)
+                                    <option value="{{ $d->id }}">{{ $d->nombre }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-danger btn-sm" target="_blank">
+                                    <i class="fa fa-file-pdf-o"></i> Descargar voceros
+                                </button>
+                            </div>                      
+                        </form>
+                    </h3>
+        	        <span class="pull-right">
+                        <a href="#" data-target="#crear_vocero" data-toggle="modal" class="btn btn-flat btn-danger">
+                          <i class="fa fa-plus" aria-hidden="true"></i> Nueva vocero
+                        </a>
+                        <a href="{{ route('pdfVocero') }}" class="btn btn-flat bg-purple" target="_blank">
+                          <i class="fa fa-file-o" aria-hidden="true"></i> Descargar
+                        </a>
+        			</span>
+        	    </div>
+      	        <div class="box-body">
 					<table class="table data-table table-bordered table-hover table-condensed">
 						<thead>
 							<tr>
@@ -242,7 +261,7 @@
 						</thead>
 						<tbody class="text-center">
 							@foreach($voceros as $d)
-                @include("comunas.modals.editar_vocero")
+                            @include("comunas.modals.editar_vocero")
 								<tr>
 									<td>{{ $loop->index+1 }}</td>
 									<td>{{ $d->cedula }}</td>
@@ -252,8 +271,8 @@
 									<td class="danger">{{ $d->cc->nombre }}</td>
 									<td>
 										<a href="#" class="btn btn-warning btn-xs" title="Editar" data-toggle="modal" data-target="#editar_vocero_{{ $d->id }}">
-                      <i class="fa fa-edit"></i> editar
-                    </a>
+                                          <i class="fa fa-edit"></i> editar
+                                        </a>
 									</td>
 								</tr>
 							@endforeach

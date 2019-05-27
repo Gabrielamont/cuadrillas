@@ -43,7 +43,7 @@
            <!--  <img class="img-responsive" src="{{ asset('img/logo_blanco.png') }}" alt="Logo" style="height:30px;margin:10px 0 0 10px"> -->
           </span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>COMUNAS</b></span>
+          <span class="logo-lg"><b>INICIO</b></span>
         </a>
 
         <!-- Header Navbar: style can be found in header.less -->
@@ -123,6 +123,18 @@
 
             <li class="treeview">
               <a href="#">
+                <i class="fa fa-users"></i>
+                <span>Consejos Comunales</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="{{route('planillas.create')}}"><i class="fa fa-circle-o"></i> Crear</a></li>
+                <li><a href="{{route('planillas.index')}}"><i class="fa fa-circle-o"></i> Ver</a></li>
+              </ul>
+            </li>
+            
+            <li class="treeview">
+              <a href="#">
                 <i class="fa fa-laptop"></i>
                 <span>Planillas</span>
                 <i class="fa fa-angle-left pull-right"></i>
@@ -133,17 +145,6 @@
               </ul>
             </li>
 
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-users"></i>
-                <span>Consejos Comunales</span>
-                <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="{{route('planillas.create')}}"><i class="fa fa-circle-o"></i> Crear</a></li>
-                <li><a href="{{route('planillas.index')}}"><i class="fa fa-circle-o"></i> Ver</a></li>
-              </ul>
-            </li>
           </ul>
         </section>
         <!-- /.sidebar -->

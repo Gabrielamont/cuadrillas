@@ -75,4 +75,11 @@ class ConsejoComunalController extends Controller
         $pdf = PDF::loadView('pdf.ccPdf', compact('cc'));
         return $pdf->stream(date("d-m-Y h:m:s").'.pdf');
     }
+
+    public function ccPdfID($id)
+    {
+        $cc = ConsejoComunal::findOrFail($id);
+        $pdf = PDF::loadView('pdf.ccPdfID', compact('cc'));
+        return $pdf->stream(date("d-m-Y h:m:s").'.pdf');
+    }
 }

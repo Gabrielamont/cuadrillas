@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Sectores;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade as PDF;
 use Validator;
 
 class SectoresController extends Controller
@@ -106,5 +107,12 @@ class SectoresController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function sectorPdfID($id)
+    {
+        $sector     = Sectores::findOrFail($id);
+        $pdf    = PDF::loadView('pdf.sectorPdfID', compact('sector'));
+        return $pdf->stream(date("d-m-Y h:m:s").'.pdf');
     }
 }

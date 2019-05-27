@@ -39,8 +39,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/consejo/{id}', 'PlanillasController@consejo')->name('consejo.dinamico');
     Route::get('/sector/{id}', 'PlanillasController@sector')->name('sector.dinamico');
 
-    // voceros
+    // consejos comunales
     Route::get('cc/buscar/{id}', 'ConsejoComunalController@buscarCC');
+    Route::get('ccPdf/{id}', 'ConsejoComunalController@ccPdfID')->name("cc.pdf");
+
+    //sectores
+    Route::get('sectorPdf/{id}', 'SectoresController@sectorPdfID')->name("sector.pdf");
+
+    //voceros
+    Route::post('voceroPdf', 'VoceroController@voceroPdf')->name("voceroPdf");
 
     // pdfs
     Route::get('pdfComuna', 'ComunaController@pdfComuna')->name("pdfComuna");
