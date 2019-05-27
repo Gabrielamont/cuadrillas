@@ -16,7 +16,7 @@
       <div class="info-box">
         <span class="info-box-icon bg-green"><i class="fa fa-arrows"></i></span>
         <div class="info-box-content">
-          <span class="info-box-text">Comunas creadas</span>
+          <span class="info-box-text"><a href="{{route('comunas.index')}}">Comunas creadas</a></span>
           <span class="info-box-number">{{ count($comunas) }}</span>
         </div>
       </div>
@@ -26,7 +26,7 @@
       <div class="info-box">
         <span class="info-box-icon bg-navy"><i class="fa fa-users"></i></span>
         <div class="info-box-content">
-          <span class="info-box-text">Consejos comunales</span>
+          <span class="info-box-text"><a href="{{route('cc.index')}}">Consejos comunales</a></span>
           <span class="info-box-number">{{ count($cc) }}</span>
         </div>
       </div>
@@ -90,10 +90,13 @@
 									<td>{{ $d->descripcion }}</td>
 									<td>
 										<a href="#" class="btn btn-warning btn-xs" title="Editar" data-toggle="modal" data-target="#editar_comuna_{{ $d->id }}">
-                      <i class="fa fa-edit"></i> editar
-                    </a>
+					                      <i class="fa fa-edit"></i> editar
+					                    </a>
 										<a href="#" class="btn btn-primary btn-xs" title="agregar consejos comunales" data-toggle="modal" data-target="#crear_cc_{{ $d->id }}">
 					                      <i class="fa fa-plus"></i> agregar cc
+					                    </a>
+					                    <a href="{{route('comuna.pdf',['id' => $d->id])}}" class="btn btn-danger btn-xs" title="pdf" d>
+					                      <i class="fa fa-print"></i> pdf
 					                    </a>
 									</td>
 								</tr>
@@ -144,6 +147,9 @@
 					                    <a href="#" class="btn btn-primary btn-xs" title="agregar sector" data-toggle="modal" data-target="#crear_sector_{{ $d->id }}">
 					                      <i class="fa fa-plus"></i> agregar sector
 					                    </a>
+					                     <a href="#" class="btn btn-danger btn-xs" title="pdf" d>
+					                      <i class="fa fa-print"></i> pdf
+					                    </a>
 
 									</td>
 								</tr>
@@ -190,8 +196,11 @@
 									<td class="success">{{ $d->consejo->nombre }}</td>
 									<td>
 										<a href="#" class="btn btn-warning btn-xs" title="Editar" data-toggle="modal" data-target="#editar_sector_{{ $d->id }}">
-                      <i class="fa fa-edit"></i> editar
-                    </a>
+					                      <i class="fa fa-edit"></i> editar
+					                    </a>
+					                     <a href="#" class="btn btn-danger btn-xs" title="pdf" d>
+					                      <i class="fa fa-print"></i> pdf
+					                    </a>
 									</td>
 								</tr>
 							@endforeach

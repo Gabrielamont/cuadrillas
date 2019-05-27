@@ -21,6 +21,6 @@ class ConsejoComunal extends Model
 
     public function voceros()
     {
-        return $this->hasMany('App\Vocero');
+        return $this->hasMany('App\Vocero','cc_id');
     }
 }

@@ -1,10 +1,10 @@
 @extends('layouts.app')
-@section('title','Comunas - '.config('app.name'))
-@section('header','Comunas')
+@section('title','Consejos Comunales - '.config('app.name'))
+@section('header','Consejos Comunales')
 @section('breadcrumb')
 	<ol class="breadcrumb">
 	  <li><a href="{{route('dashboard')}}"><i class="fa fa-home" aria-hidden="true"></i> Inicio</a></li>
-	  <li class="active"> Comunas </li>
+	  <li class="active"> Consejos Comunales </li>
 	</ol>
 @endsection
 @section('content')
@@ -16,8 +16,8 @@
         <span class="info-box-icon bg-red"><i class="fa fa-users"></i></span>
 
         <div class="info-box-content">
-          <span class="info-box-text">Comunas</span>
-          <span class="info-box-number">{{ count($comunas) }}</span>
+          <span class="info-box-text">Consejos Comunales</span>
+          <span class="info-box-number">{{ count($cc) }}</span>
         </div>
         <!-- /.info-box-content -->
       </div>
@@ -29,9 +29,9 @@
   	<div class="col-md-12">
     	<div class="box box-danger">
 	      <div class="box-header with-border">
-	        <h3 class="box-title"><i class="fa fa-users"></i> Comunas</h3>
+	        <h3 class="box-title"><i class="fa fa-users"></i> Consejos Comunales</h3>
 	        <span class="pull-right">
-						<a href="{{ route('comunas.create') }}" class="btn btn-flat btn-success"><i class="fa fa-plus" aria-hidden="true"></i> Nueva comuna</a>
+						<a href="{{ route('cc.create') }}" class="btn btn-flat btn-success"><i class="fa fa-plus" aria-hidden="true"></i> Nuevo Consejo Comunal</a>
 					</span>
 	      </div>
       			<div class="box-body">
@@ -45,13 +45,13 @@
 							</tr>
 						</thead>
 						<tbody class="text-center">
-							@foreach($comunas as $d)
+							@foreach($cc as $d)
 								<tr>
 									<td>{{$loop->index+1}}</td>
 									<td>{{$d->nombre}}</td>
 									<td>{{$d->descripcion}}</td>
 									<td>
-										<a class="btn btn-primary btn-flat btn-sm" href="{{ route('comunas.show',[$d->id])}}"><i class="fa fa-search"></i></a>
+										<a class="btn btn-primary btn-flat btn-sm" href="{{ route('cc.show',[$d->id])}}"><i class="fa fa-search"></i></a>
 										<!-- <a href="{{route('users.edit',[$d->id])}}" class="btn btn-flat btn-success btn-sm" title="Editar"><i class="fa fa-edit"></i></a> -->
 									</td>
 								</tr>

@@ -30,6 +30,13 @@ class ComunaController extends Controller
         return $pdf->stream(date("d-m-Y h:m:s").'.pdf');
     }
 
+    public function pdf($id)
+    {
+        $comuna = Comuna::findOrFail($id);
+        $pdf = PDF::loadView('comunas.pdf',['comuna' => $comuna]);
+        return $pdf->stream(date("d-m-Y h:m:s").$comuna->nombre.'.pdf');
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -87,5 +94,12 @@ class ComunaController extends Controller
     public function destroy(Comuna $comuna)
     {
         //
+    }
+
+    public function show($id)
+    {
+        $comuna = Comuna::findOrFail($id);
+
+        return view('comunas.view',['comuna' => $comuna]);
     }
 }
