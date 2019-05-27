@@ -66,11 +66,11 @@
                   <td class="success">{{ $d->comuna->nombre }}</td>
                   <td>
                     <a href="#" class="btn btn-warning btn-xs" title="Editar" data-toggle="modal" data-target="#editar_cc_{{ $d->id }}">
-                                <i class="fa fa-edit"></i> editar
-                              </a>
-                               <a href="#" class="btn btn-danger btn-xs" title="pdf" d>
-                                <i class="fa fa-print"></i> pdf
-                              </a>
+                      <i class="fa fa-edit"></i> editar
+                    </a>
+                     <a href="#" class="btn btn-danger btn-xs" title="pdf" d>
+                      <i class="fa fa-print"></i> pdf
+                    </a>
 
                   </td>
                 </tr>

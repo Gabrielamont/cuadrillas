@@ -36,7 +36,7 @@
       <div class="info-box">
         <span class="info-box-icon bg-red"><i class="fa fa-list-alt"></i></span>
         <div class="info-box-content">
-          <span class="info-box-text"><a href="#">Voceros</a></span>
+          <span class="info-box-text">Voceros</span>
           <span class="info-box-number">{{ count($voceros) }}</span>
         </div>
       </div>
@@ -46,7 +46,7 @@
       <div class="info-box">
         <span class="info-box-icon bg-red"><i class="fa fa-list"></i></span>
         <div class="info-box-content">
-          <span class="info-box-text"><a href="#">Sectores</a></span>
+          <span class="info-box-text">Sectores</span>
           <span class="info-box-number">{{ count($sectores) }}</span>
         </div>
       </div>
@@ -95,7 +95,7 @@
 										<a href="#" class="btn btn-primary btn-xs" title="agregar consejos comunales" data-toggle="modal" data-target="#crear_cc_{{ $d->id }}">
 					                      <i class="fa fa-plus"></i> agregar cc
 					                    </a>
-					                    <a href="#" class="btn btn-danger btn-xs" title="pdf" d>
+					                    <a href="{{route('comuna.pdf',['id' => $d->id])}}" class="btn btn-danger btn-xs" title="pdf" d>
 					                      <i class="fa fa-print"></i> pdf
 					                    </a>
 									</td>

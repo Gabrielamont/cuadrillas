@@ -48,6 +48,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('pdfVocero', 'VoceroController@pdfVocero')->name("pdfVocero");
     Route::get('plan/{id}', 'PlanillasController@pdf')->name('planillas.pdf');
 
+    /* -- PDf comunas -- */
+    Route::get('pdfCo/{id}','ComunaController@pdf')->name('comuna.pdf');
+
     //* --- Perfil --- */
     Route::get('/perfil', 'UserController@perfil')->name('perfil');
     Route::patch('/perfil', 'UserController@update_perfil')->name('update_perfil');

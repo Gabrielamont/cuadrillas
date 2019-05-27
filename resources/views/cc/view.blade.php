@@ -26,7 +26,7 @@
         </h2>
     	</div>
 			<div class="col-md-4">
-				<h4>Detalles del Usuario</h4>
+				<h4>Detalles de la comuna</h4>
 				<p><b>Comuna: </b> {{$cc->nombre}} </p>
         <p><b>Descripcion: </b> {{$cc->descripcion}} </p>
 			</div>
